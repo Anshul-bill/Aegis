@@ -1,0 +1,87 @@
+====================================================
+  PROJECT AEGIS — DEMO RECORDING SCRIPT (~2 min)
+====================================================
+
+Start screen recording (OBS / Win+G / Loom). Keep it crisp.
+
+------------------------------------------------------
+SCENE 1: INTRO (10 sec)
+------------------------------------------------------
+[Show: Browser open at http://localhost:8001]
+
+SAY: "This is Project Aegis — an AI-powered platform that
+automates compliance evaluation for government tenders
+using Vision-Language Models and visual grounding."
+
+------------------------------------------------------
+SCENE 2: UPLOAD DOCUMENTS (15 sec)
+------------------------------------------------------
+[Action: Click the upload area]
+[Action: Select 2 files:
+   1. CRPF_Tender_TE_406_Master.pdf  (the tender)
+   2. Bidder_Alpha_Tech_Portfolio.pdf (a bidder)
+]
+
+SAY: "We upload a government tender and a bidder's
+portfolio. The system will automatically extract
+requirements and evaluate compliance."
+
+------------------------------------------------------
+SCENE 3: RUN ANALYSIS (10 sec)
+------------------------------------------------------
+[Action: Click "Start AI Evaluation" button]
+
+SAY: "The pipeline runs 5 phases — PII sanitization,
+tender deconstruction via LLaMA, VLM extraction
+via NVIDIA NIM, numerical validation, and
+confidence benchmarking."
+
+[Wait for results to load — ~30-60 sec]
+TIP: You can speed this part up in editing, or
+     just show a brief "Processing..." moment.
+
+------------------------------------------------------
+SCENE 4: SHOW METRICS (10 sec)
+------------------------------------------------------
+[Show: The 4 metric cards — Accuracy, Precision, Recall, Status]
+
+SAY: "The system achieves high accuracy with full
+precision and recall on compliance classification."
+
+------------------------------------------------------
+SCENE 5: SHOW AUDIT LEDGER (20 sec)
+------------------------------------------------------
+[Action: Scroll down to the Compliance Audit Ledger table]
+[Action: Hover over a few rows to highlight them]
+
+SAY: "Every requirement is traced back to its source
+file, with the extracted value, confidence score,
+and a clear rationale. No silent disqualification —
+every decision is explainable."
+
+------------------------------------------------------
+SCENE 6: SHOW VISUAL GROUNDING (15 sec)
+------------------------------------------------------
+[Show: The grounded PDF viewer with red highlight boxes]
+
+SAY: "Most importantly, every extraction is spatially
+grounded — you can see exactly WHERE on the
+document the AI found the evidence. This makes
+the system fully auditable."
+
+------------------------------------------------------
+SCENE 7: CLOSING (10 sec)
+------------------------------------------------------
+SAY: "Project Aegis — making government procurement
+transparent, fast, and fair. Built with NVIDIA NIM,
+LangGraph, and Presidio. Thank you."
+
+====================================================
+TOTAL TIME: ~90 seconds (before editing)
+====================================================
+
+TIPS:
+- Use Win+G (Xbox Game Bar) or OBS for screen recording
+- Keep your mouse movements smooth and deliberate
+- If the API takes long, cut/speed-up the wait in editing
+- Upload to YouTube as Unlisted and share the link

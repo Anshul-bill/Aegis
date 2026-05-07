@@ -24,6 +24,9 @@ COPY static/ static/
 # Copy sample PDFs
 COPY *.pdf ./
 
+# Create writable directories for results and qdrant
+RUN mkdir -p results qdrant_data
+
 # HF Spaces requires port 7860
 ENV PORT=7860
 EXPOSE 7860
