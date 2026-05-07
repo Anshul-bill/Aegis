@@ -122,5 +122,6 @@ async def root():
     return JSONResponse({"error": "Frontend not found. Please create static/index.html"}, status_code=404)
 
 if __name__ == "__main__":
-    print("Starting Project Aegis API on http://localhost:8001")
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    port = int(os.environ.get("PORT", 8001))
+    print(f"Starting Project Aegis API on http://localhost:{port}")
+    uvicorn.run(app, host="0.0.0.0", port=port)
