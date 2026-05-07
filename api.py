@@ -8,37 +8,42 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from sanitizer import AegisSOTASanitizer
-from deconstruction_agent import AegisDeconstructionAgent
-from vlm_engine import AegisVLMEngine
-from decision_engine import AegisDecisionEngine
-from benchmarker import AegisBenchmarker
-from rag_engine import AegisRAGEngine
-from orchestrator import AegisOrchestrator
+# --- [SOTA Memory Optimization] Lazy-Load Singletons ---
+# Models are loaded on first request, not at startup, to avoid OOM on constrained environments.
+_orchestrator = None
 
-from gliner import GLiNER
-from sentence_transformers import SentenceTransformer
+def _get_orchestrator():
+    """Lazy-initialize all AI models and engines on first use."""
+    global _orchestrator
+    if _orchestrator is None:
+        print("--- [SOTA] Loading Global AI Models (first request) ---")
+        from gliner import GLiNER
+        from sentence_transformers import SentenceTransformer
+        from sanitizer import AegisSOTASanitizer
+        from deconstruction_agent import AegisDeconstructionAgent
+        from vlm_engine import AegisVLMEngine
+        from decision_engine import AegisDecisionEngine
+        from benchmarker import AegisBenchmarker
+        from rag_engine import AegisRAGEngine
+        from orchestrator import AegisOrchestrator
 
-# --- [SOTA Memory Optimization] Global Singletons ---
-# Load models once at startup to prevent OOM errors on 7.5GB RAM
-print("--- [SOTA] Loading Global AI Models ---")
-_gliner_model = GLiNER.from_pretrained("urchade/gliner_small-v2.1")
-_st_model = SentenceTransformer('all-MiniLM-L6-v2')
+        _gliner_model = GLiNER.from_pretrained("urchade/gliner_small-v2.1")
+        _st_model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Initialize Engines with Shared Models
-sanitizer = AegisSOTASanitizer(preloaded_gliner=_gliner_model)
-rag_engine = AegisRAGEngine(preloaded_model=_st_model)
-vlm_engine = AegisVLMEngine()
-decision_engine = AegisDecisionEngine()
-decon_agent = AegisDeconstructionAgent(preloaded_rag=rag_engine)
+        sanitizer = AegisSOTASanitizer(preloaded_gliner=_gliner_model)
+        rag_engine = AegisRAGEngine(preloaded_model=_st_model)
+        vlm_engine = AegisVLMEngine()
+        decision_engine = AegisDecisionEngine()
+        decon_agent = AegisDeconstructionAgent(preloaded_rag=rag_engine)
 
-# Initialize Orchestrator with Singletons
-orchestrator = AegisOrchestrator(
-    preloaded_sanitizer=sanitizer,
-    preloaded_decon=decon_agent,
-    preloaded_vlm=vlm_engine,
-    preloaded_decision=decision_engine
-)
+        _orchestrator = AegisOrchestrator(
+            preloaded_sanitizer=sanitizer,
+            preloaded_decon=decon_agent,
+            preloaded_vlm=vlm_engine,
+            preloaded_decision=decision_engine
+        )
+        print("--- [SOTA] All models loaded successfully ---")
+    return _orchestrator
 
 app = FastAPI(title="Project Aegis - ADE Pipeline API")
 
@@ -64,6 +69,9 @@ async def analyze_documents(files: List[UploadFile] = File(...)):
     Accepts uploaded tender documents (PDFs, Excel BOQs), saves them,
     runs the AegisOrchestrator, and returns the evaluation metrics.
     """
+    # Lazy-load models on first request
+    orchestrator = _get_orchestrator()
+
     # Create a temporary directory for this evaluation run
     temp_dir = tempfile.mkdtemp(prefix="aegis_")
     
