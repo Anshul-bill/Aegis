@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-05-02T12:00:00Z",
+  "results": [
+    {
+      "parameter_id": "rule_123",
+      "status": "COMPLIANT",
+      "confidence": 0.92,
+      "evidence_bbox": [
+        100,
+        200,
+        300,
+        250
+      ],
+      "extracted_value": "\u20b95.2 Crore"
+    }
+  ]
+}

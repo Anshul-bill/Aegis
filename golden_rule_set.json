@@ -1,0 +1,32 @@
+[
+  {
+    "parameter_id": "91f06d8d6124cbacefc6c6dc76121a14",
+    "classification_type": "TECHNICAL_MANDATORY",
+    "semantic_description": "GSQR Clause 1.1: The vendor must demonstrate a minimum annual financial turnover of 5 Crore.",
+    "documentary_evidence": [
+      "Certificate of Compliance",
+      "Audit Report"
+    ],
+    "regulatory_override": false
+  },
+  {
+    "parameter_id": "d55b68144f44bf3883c58564168e9820",
+    "classification_type": "TECHNICAL_MANDATORY",
+    "semantic_description": "Requirement: Bidder must have ISO 9001:2015 certification.",
+    "documentary_evidence": [
+      "Certificate of Compliance",
+      "Audit Report"
+    ],
+    "regulatory_override": false
+  },
+  {
+    "parameter_id": "c3ec525e9fc2f8e2a116d17776a06d48",
+    "classification_type": "FINANCIAL_MANDATORY",
+    "semantic_description": "Clause 5: MSE entities are eligible for regulatory override on EMD.",
+    "documentary_evidence": [
+      "Certificate of Compliance",
+      "Audit Report"
+    ],
+    "regulatory_override": true
+  }
+]

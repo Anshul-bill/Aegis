@@ -1,0 +1,36 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE / Editor configs
+.opencode/
+.gemini/
+
+# Environment variables (contains API keys)
+.env
+
+# Qdrant local database
+qdrant_data/
+
+# Results output
+results/
+
+# Markdown files (except README.md)
+presentation.md
+LIVE_TEST_REPORT.md
+PHASE_3_NIM.md
+PROJECT_STATUS.md
+Project_Aegis_Phase2.md
+GEMINI.md
+
+# Test and stress test artifacts
+test_dir/
+stress_test/
+STRESS_TEST_RESULTS.json
+
+# Misc
+*.log
